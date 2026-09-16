@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Доставка цветов Ляховичи | KVETKA.LAVR</title>
-    <!-- Иконка во вкладке браузера -->
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/jpg" href="logo.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* Базовые настройки */
@@ -22,12 +21,11 @@
         }
 
         body {
-            background-color: #ffffff;
+            background-color: #ffffff; /* Чисто белый фон */
             color: #333;
             line-height: 1.6;
         }
-
-        /* --- ШАПКА --- */
+/* --- ШАПКА --- */
         header {
             background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 185, 225, 0.85)), url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
@@ -58,7 +56,7 @@
             font-size: 3.5rem;
             margin-bottom: 10px;
             letter-spacing: 2px;
-            word-break: break-word;
+            word-break: break-word; /* Защита от вылезания длинных слов */
         }
 
         header p {
@@ -68,26 +66,7 @@
             font-weight: 400;
         }
 
-        /* Кнопка в шапке (защищена от сброса стилей в Safari) */
-        header .btn {
-            display: inline-block;
-            background-color: #ffffff !important;
-            color: #E8839E !important;
-            padding: 15px 35px;
-            text-decoration: none !important;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            -webkit-appearance: none;
-        }
-
-        header .btn:hover {
-            background-color: #fdfdfd;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
-        }
+        
 
         /* Адаптив шапки для мобильных устройств */
         @media (max-width: 768px) {
@@ -96,7 +75,7 @@
                 padding: 30px 15px;
             }
             header h1 {
-                font-size: 2rem;
+                font-size: 2rem; /* Уменьшаем до безопасного размера для экранов телефонов */
                 letter-spacing: 1px;
             }
             header p {
@@ -108,7 +87,7 @@
             }
         }
 
-        /* --- КАТАЛОГ (Единая карусель) --- */
+        /* --- КАТАЛОГ (Единая карусель для ПК и телефонов) --- */
         #catalog {
             padding: 60px 20px;
             max-width: 1200px;
@@ -127,12 +106,15 @@
             overflow-x: auto;
             gap: 30px;
             padding: 10px;
-            padding-bottom: 30px;
+            padding-bottom: 30px; /* Место под ползунок скролла */
             scroll-snap-type: x mandatory;
+            
+            /* Дизайн скроллбара */
             scrollbar-width: thin;
             scrollbar-color: #FFB9E1 #f1f1f1;
         }
 
+        /* Дизайн ползунка для Chrome/Safari */
         .products-grid::-webkit-scrollbar { height: 10px; }
         .products-grid::-webkit-scrollbar-thumb { background: #FFB9E1; border-radius: 10px; }
         .products-grid::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
@@ -144,6 +126,8 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: 0.3s;
             text-align: center;
+            
+            /* Жестко фиксируем ширину карточки, чтобы она не сжималась */
             flex: 0 0 280px; 
             scroll-snap-align: center;
         }
@@ -176,6 +160,7 @@
             display: block;
         }
 
+        /* Кнопки-ссылки в карточках товара */
         .card .btn-order {
             display: block;
             width: 100%;
@@ -254,9 +239,9 @@
 
         /* --- ПЛАВАЮЩАЯ КНОПКА СВЯЗИ --- */
         .floating-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+            position: fixed; /* Фиксируем на экране */
+            bottom: 30px; /* Отступ снизу */
+            right: 30px; /* Отступ справа */
             width: 60px;
             height: 60px;
             background-color: #E8839E;
@@ -267,14 +252,15 @@
             align-items: center;
             box-shadow: 0 4px 15px rgba(232, 131, 158, 0.4);
             transition: 0.3s;
-            z-index: 1000;
+            z-index: 1000; /* Гарантирует, что кнопка будет поверх всех блоков и карты */
         }
 
         .floating-btn:hover {
             background-color: #D16B86;
-            transform: scale(1.1);
+            transform: scale(1.1); /* Слегка увеличивается при наведении */
         }
         
+        /* Делаем иконку внутри кнопки белой и нужного размера */
         .floating-btn svg {
             width: 30px;
             height: 30px;
@@ -286,7 +272,7 @@
 
     <!-- Главный экран -->
     <header>
-        <img src="logo.png" alt="Логотип KVETKA.LAVR" class="logo">
+        <img src="logo.jpg" alt="Логотип KVETKA.LAVR" class="logo">
         <h1>KVETKA.LAVR</h1>
         <p>Дарим эмоции через букеты 🌺</p>
         <a href="#catalog" class="btn">Выбрать букет</a>
@@ -299,7 +285,7 @@
             <div class="products-grid">
                 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1591886960571-74d15c614704?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Букет с розами">
+                    <img src="zaglyshka.jpeg" alt="Букет с розами">
                     <div class="card-content">
                         <h3>Нежность</h3>
                         <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Сборный букет в фирменной упаковке</p>
@@ -309,7 +295,7 @@
                 </div>
 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Гортензии">
+                    <img src="zaglyshka.jpeg" alt="Гортензии">
                     <div class="card-content">
                         <h3>Летний вечер</h3>
                         <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Гортензии и диантусы</p>
@@ -319,7 +305,7 @@
                 </div>
 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Монобукет">
+                    <img src="zaglyshka.jpeg" alt="Монобукет">
                     <div class="card-content">
                         <h3>Монобукет</h3>
                         <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Пионовидные розы</p>
@@ -329,7 +315,7 @@
                 </div>
                 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1508611440028-09559c77395b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Полевые цветы">
+                    <img src="zaglyshka.jpeg" alt="Полевые цветы">
                     <div class="card-content">
                         <h3>Прованс</h3>
                         <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Эустома и зелень</p>
@@ -339,7 +325,7 @@
                 </div>
 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Большой букет">
+                    <img src="zaglyshka.jpeg" alt="Большой букет">
                     <div class="card-content">
                         <h3>Премиум</h3>
                         <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">101 роза</p>
@@ -405,6 +391,6 @@
             <path d="M7 13H14V15H7V13Z"/>
         </svg>
     </a>
-
+</body>
 </body>
 </html>
