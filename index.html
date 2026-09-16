@@ -285,6 +285,15 @@
             height: 30px;
             fill: white;
         }
+
+        /* --- ЦЕНТРИРОВАНИЕ ПЕРВОЙ КАРТОЧКИ НА ТЕЛЕФОНАХ --- */
+        @media (max-width: 768px) {
+            .products-grid {
+                /* Высчитываем идеальный отступ, чтобы 280px карточка встала по центру */
+                padding-left: calc(50% - 140px);
+                padding-right: calc(50% - 140px);
+            }
+        }
     </style>
 </head>
 <body>
