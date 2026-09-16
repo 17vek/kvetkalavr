@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доставка цветов Ляховичи | KVETKA.LAVR</title>
+    <link rel="icon" type="image/jpg" href="logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Плавная прокрутка для всего сайта */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ffffff; /* Чисто белый фон */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ШАПКА --- */
+        header {
+            /* Градиент в цвет #FFB9E1 поверх фото для объема */
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 185, 225, 0.85)), url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #2A363B;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* Кнопка в шапке (контрастная белая) */
+        header .btn {
+            background-color: #ffffff;
+            color: #E8839E;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        header .btn:hover {
+            background-color: #fdfdfd;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* --- КАТАЛОГ (Единая карусель для ПК и телефонов) --- */
+        #catalog {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #2A363B;
+        }
+
+        .products-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 10px;
+            padding-bottom: 30px; /* Место под ползунок скролла */
+            scroll-snap-type: x mandatory;
+            
+            /* Дизайн скроллбара */
+            scrollbar-width: thin;
+            scrollbar-color: #FFB9E1 #f1f1f1;
+        }
+
+        /* Дизайн ползунка для Chrome/Safari */
+        .products-grid::-webkit-scrollbar { height: 10px; }
+        .products-grid::-webkit-scrollbar-thumb { background: #FFB9E1; border-radius: 10px; }
+        .products-grid::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            text-align: center;
+            
+            /* Жестко фиксируем ширину карточки, чтобы она не сжималась */
+            flex: 0 0 280px; 
+            scroll-snap-align: center;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: #E8839E;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Кнопки-ссылки в карточках товара */
+        .card .btn-order {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #E8839E;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        .card .btn-order:hover {
+            background-color: #D16B86;
+        }
+
+        /* --- БЛОК ПРЕИМУЩЕСТВ С ПАТТЕРНОМ --- */
+        #features {
+            background-color: #FCEEF1;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #features::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 80 80'%3E%3Cg stroke='%231a1a1a' stroke-width='2' fill='none'%3E%3Cellipse cx='40' cy='22' rx='8' ry='14' /%3E%3Cellipse cx='40' cy='22' rx='8' ry='14' transform='rotate(72 40 40)' /%3E%3Cellipse cx='40' cy='22' rx='8' ry='14' transform='rotate(144 40 40)' /%3E%3Cellipse cx='40' cy='22' rx='8' ry='14' transform='rotate(216 40 40)' /%3E%3Cellipse cx='40' cy='22' rx='8' ry='14' transform='rotate(288 40 40)' /%3E%3Ccircle cx='40' cy='40' r='10' fill='%23ffffff' /%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 80px 80px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .features-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-item {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+        }
+
+        /* --- ПОДВАЛ И КАРТА --- */
+        #map-section {
+            max-width: 1200px; 
+            margin: 0 auto 60px auto; 
+            padding: 0 20px;
+        }
+
+        footer {
+            background-color: #2A363B;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* --- ПЛАВАЮЩАЯ КНОПКА СВЯЗИ --- */
+        .floating-btn {
+            position: fixed; /* Фиксируем на экране */
+            bottom: 30px; /* Отступ снизу */
+            right: 30px; /* Отступ справа */
+            width: 60px;
+            height: 60px;
+            background-color: #E8839E;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(232, 131, 158, 0.4);
+            transition: 0.3s;
+            z-index: 1000; /* Гарантирует, что кнопка будет поверх всех блоков и карты */
+        }
+
+        .floating-btn:hover {
+            background-color: #D16B86;
+            transform: scale(1.1); /* Слегка увеличивается при наведении */
+        }
+        
+        /* Делаем иконку внутри кнопки белой и нужного размера */
+        .floating-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Главный экран -->
+    <header>
+        <img src="logo.jpg" alt="Логотип KVETKA.LAVR" class="logo">
+        <h1>KVETKA.LAVR</h1>
+        <p>Дарим эмоции через букеты 🌺</p>
+        <a href="#catalog" class="btn">Выбрать букет</a>
+    </header>
+
+    <main>
+        <!-- Каталог товаров -->
+        <section id="catalog">
+            <h2>Доступно к заказу</h2>
+            <div class="products-grid">
+                
+                <div class="card">
+                    <img src="zaglyshka.jpeg" alt="Букет с розами">
+                    <div class="card-content">
+                        <h3>Нежность</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Сборный букет в фирменной упаковке</p>
+                        <span class="price">65 BYN</span>
+                        <a href="https://ig.me/m/kvetka.lavr" target="_blank" class="btn-order">Заказать</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="zaglyshka.jpeg" alt="Гортензии">
+                    <div class="card-content">
+                        <h3>Летний вечер</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Гортензии и диантусы</p>
+                        <span class="price">80 BYN</span>
+                        <a href="https://ig.me/m/kvetka.lavr" target="_blank" class="btn-order">Заказать</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="zaglyshka.jpeg" alt="Монобукет">
+                    <div class="card-content">
+                        <h3>Монобукет</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Пионовидные розы</p>
+                        <span class="price">95 BYN</span>
+                        <a href="https://ig.me/m/kvetka.lavr" target="_blank" class="btn-order">Заказать</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="zaglyshka.jpeg" alt="Полевые цветы">
+                    <div class="card-content">
+                        <h3>Прованс</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">Эустома и зелень</p>
+                        <span class="price">55 BYN</span>
+                        <a href="https://ig.me/m/kvetka.lavr" target="_blank" class="btn-order">Заказать</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="zaglyshka.jpeg" alt="Большой букет">
+                    <div class="card-content">
+                        <h3>Премиум</h3>
+                        <p style="font-size: 0.9rem; color: #777; margin-bottom: 10px;">101 роза</p>
+                        <span class="price">250 BYN</span>
+                        <a href="https://ig.me/m/kvetka.lavr" target="_blank" class="btn-order">Заказать</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Преимущества -->
+        <section id="features">
+            <h2>Почему выбирают нас?</h2>
+            <div class="features-container">
+                <div class="feature-item">
+                    <h3>🌸 Свежесть 100%</h3>
+                    <p>Прямые поставки цветов два раза в неделю. Букеты стоят долго.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📸 Фото перед отправкой</h3>
+                    <p>Пришлем фото готового букета в мессенджер до передачи курьеру.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🚀 Быстрая доставка</h3>
+                    <p>Доставим букет лично в руки в течение 2 часов после заказа.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Карта -->
+        <section id="map-section">
+            <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 30px; color: #2A363B;">Как нас найти</h2>
+            <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.05); line-height: 0;">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Ляховичи,+ул.+Ленина,+48&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    aria-hidden="false" 
+                    tabindex="0">
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <h2 style="color: white; margin-bottom: 20px;">Наши контакты</h2>
+        <p>📍 г. Ляховичи, ул. Ленина 48</p>
+        <p>🕒 9:00 - 21:00 (воскресенье - выходной)</p>
+        <p style="margin-top: 15px;">Доставка | Онлайн оплата</p>
+        <p style="margin-top: 30px; font-size: 0.8rem;">&copy; 2026 KVETKA.LAVR</p>
+    </footer>
+
+    <!-- Плавающая кнопка -->
+    <a href="https://ig.me/m/kvetka.lavr" target="_blank" class="floating-btn" title="Написать в Direct">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z"/>
+            <path d="M7 9H17V11H7V9Z"/>
+            <path d="M7 13H14V15H7V13Z"/>
+        </svg>
+    </a>
+</body>
+</body>
+</html>
