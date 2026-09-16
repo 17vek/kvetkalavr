@@ -25,20 +25,21 @@
             color: #333;
             line-height: 1.6;
         }
-
-        /* --- ШАПКА --- */
+/* --- ШАПКА --- */
         header {
             background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 185, 225, 0.85)), url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
-            background-position: center; /* Центрируем картинку, чтобы она не съезжала */
-            height: 80vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: #2A363B;
-            padding: 20px;
+            padding: 40px 20px;
+            box-sizing: border-box;
         }
 
         .logo {
@@ -55,6 +56,7 @@
             font-size: 3.5rem;
             margin-bottom: 10px;
             letter-spacing: 2px;
+            word-break: break-word; /* Защита от вылезания длинных слов */
         }
 
         header p {
@@ -64,22 +66,22 @@
             font-weight: 400;
         }
 
-        /* Адаптив шапки для телефонов */
+        /* Адаптив шапки для мобильных устройств */
         @media (max-width: 768px) {
             header {
-                height: 70vh; /* Чуть уменьшаем высоту на мобилках для пропорций */
-                padding: 15px;
+                min-height: 70vh;
+                padding: 30px 15px;
             }
             header h1 {
-                font-size: 2.2rem; /* Уменьшаем текст, чтобы он не ломался и не переносился криво */
+                font-size: 2rem; /* Уменьшаем до безопасного размера для экранов телефонов */
                 letter-spacing: 1px;
             }
             header p {
                 font-size: 1rem;
             }
             .logo {
-                width: 100px; /* Чуть компактнее логотип для телефона */
-                height: 100px;
+                width: 90px;
+                height: 90px;
             }
         }
 
